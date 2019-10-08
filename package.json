@@ -1,0 +1,26 @@
+{
+  "name": "events-lab",
+  "version": "1.0.0",
+  "description": "Events Lab",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --verbose --coverage",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colosrjones-401d4/lab-17.git"
+  },
+  "bugs": {
+    "url": "https://github.com/colosrjones-401d4/lab-17/issues"
+  },
+  "homepage": "https://github.com/colosrjones-401d4/lab-17#readme"
+}
