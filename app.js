@@ -1,17 +1,29 @@
 'use strict';
 
-const fs = require('fs');
+const hub = require('./hub');
+const uuid = require('uuid');
 
-const alterFile = (file) => {
+require('./logger');
+require('./network-logger');
+require('./cache-invalidator');
+
+console.log('App is listening!');
+
+const { saveToDb } = require('./db');
+
+alterFile = (file) => {
   fs.readFile( file, (err, data) => {
-    if(err) { throw err; }
+    if(err) { hub.emit('err', err); };
     let text = data.toString().toUpperCase();
+
     fs.writeFile( file, Buffer.from(text), (err, data) => {
-      if(err) { throw err; }
-      console.log(`${file} saved`);
+      if(err) { hub.emit('err', err); };
+
     });
-  });
+  } );
 };
 
-let file = process.argv.slice(2).shift();
-alterFile(file);
+// Don't save until we're probably connected
+setInterval(() => {
+  saveToDb({ name: uuid() });
+}, 500);
